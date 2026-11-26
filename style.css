@@ -275,3 +275,4 @@ dialog li a{display:flex;align-items:center;justify-content:center;min-height:56
 
 /* steady */
 .js .rv,.js .fade,html.js .rv:not(.in),.js .rv.in,.js .fade.in{opacity:1!important;transition:none!important;animation:none!important;transform:none!important}
+.dock a,.dock button{min-height:46px;font-size:11px;letter-spacing:.2em}
