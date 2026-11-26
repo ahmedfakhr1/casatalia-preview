@@ -272,3 +272,6 @@ dialog li a{display:flex;align-items:center;justify-content:center;min-height:56
   .menu-photo{width:132px}
   .foot{padding-bottom:calc(32px + 20px)}
 }
+
+/* steady */
+.js .rv,.js .fade,html.js .rv:not(.in),.js .rv.in,.js .fade.in{opacity:1!important;transition:none!important;animation:none!important;transform:none!important}

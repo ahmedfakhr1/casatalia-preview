@@ -29,9 +29,9 @@ function rel(){d.classList.remove('fl')}
 try{Promise.all(['500 1em "Playfair Display"','600 1em "Playfair Display"','400 1em Jost','500 1em Jost','400 1em Allura'].map(function(f){return document.fonts.load(f)})).then(rel,rel)}catch(e){rel()}
 setTimeout(rel,1200);
 setTimeout(function(){d.classList.remove('veil','hold')},4200)})();</script>
-<link rel="stylesheet" href="fonts.css?v=1">
-<link rel="stylesheet" href="style.css?v=1">
-<script src="site.js?v=1" defer></script>
+<link rel="stylesheet" href="fonts.css?v=2">
+<link rel="stylesheet" href="style.css?v=2">
+<script src="site.js?v=2" defer></script>
 </head>
 <body class="menu-page">
 <a class="skip" href="#main">Skip to content</a>
@@ -58,7 +58,7 @@ setTimeout(function(){d.classList.remove('veil','hold')},4200)})();</script>
       <a href="index.html#book">Book a table</a>
     </nav>
     <p class="drawer-meta"><a href="https://www.instagram.com/casa.talia/" target="_blank" rel="noopener">Instagram @casa.talia</a><a href="mailto:contact@casa-talia.com">contact@casa-talia.com</a></p>
-    <button class="ar ar-drawer" type="button" data-ar aria-haspopup="dialog">AR</button>
+    
   </div>
   <div class="drawer-scrim" data-close></div>
 </div>
@@ -408,5 +408,6 @@ setTimeout(function(){d.classList.remove('veil','hold')},4200)})();</script>
   <p>Arabic is not in this preview, it will be live in the final version.</p>
   <button class="btn btn-ink" type="button" data-close>Got it</button>
 </dialog>
+<script>addEventListener("load",function(){setTimeout(function(){document.querySelectorAll('img[loading="lazy"]').forEach(function(i){i.loading="eager"})},1e3)})</script>
 </body>
 </html>
