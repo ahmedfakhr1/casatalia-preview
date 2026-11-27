@@ -124,15 +124,27 @@
       });
     });
     var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    var ok = $('#f-ok'), nameEl = $('#f-name');
+    /* validate on blur, then keep the message in step while the guest types */
+    function mark(el) { el.setAttribute('aria-invalid', el.value.trim() ? 'false' : 'true'); }
+    function say() {
+      var bad = [];
+      if (nameEl.getAttribute('aria-invalid') === 'true') bad.push('your name');
+      if (date.getAttribute('aria-invalid') === 'true') bad.push('a date');
+      err.textContent = bad.length ? 'Please add ' + bad.join(' and ') + '.' : '';
+      return bad.length === 0;
+    }
+    function check() { mark(nameEl); mark(date); return say(); }
+    [nameEl, date].forEach(function (el) {
+      var touched = false; /* tabbing past an untouched field stays quiet */
+      el.addEventListener('input', function () { touched = true; if (el.getAttribute('aria-invalid') === 'true') { mark(el); say(); } });
+      el.addEventListener('blur', function () { if (touched || el.getAttribute('aria-invalid')) { mark(el); say(); } });
+    });
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var name = $('#f-name').value.trim(), dv = date.value, bad = [];
-      $('#f-name').setAttribute('aria-invalid', name ? 'false' : 'true');
-      date.setAttribute('aria-invalid', dv ? 'false' : 'true');
-      if (!name) bad.push('your name');
-      if (!dv) bad.push('a date');
-      if (bad.length) { err.textContent = 'Please add ' + bad.join(' and ') + '.'; return; }
-      err.textContent = '';
+      ok.textContent = '';
+      var name = nameEl.value.trim(), dv = date.value;
+      if (!check()) return;
       var p = dv.split('-'), dt = new Date(+p[0], +p[1] - 1, +p[2]);
       var nice = days[dt.getDay()] + ' ' + dt.getDate() + ' ' + months[dt.getMonth()] + ' ' + dt.getFullYear();
       var note = $('#f-note').value.trim();
@@ -147,6 +159,7 @@
       a.href = 'https://wa.me/201029565960?text=' + encodeURIComponent(msg);
       a.target = '_blank'; a.rel = 'noopener';
       document.body.appendChild(a); a.click(); a.remove();
+      ok.textContent = 'Opening WhatsApp. Press send there to finish.';
     });
   }
 
